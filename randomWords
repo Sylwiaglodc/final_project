@@ -1,0 +1,25 @@
+"""
+Program: Hangman game
+Name:Sylwia Glod
+Date: Decemeber 14th, 2020
+"""
+
+import random
+listofword = 'wordlist.txt'
+
+
+def get_random_word(minimum_word_length):
+    # Get a random word from the wordlist using no extra memory.
+    num_words_processed = 0
+    curr_word = None
+    with open(listofword, 'r') as f:
+        for word in f:
+            if '(' in word or ')' in word:
+                continue
+            word = word.strip().lower()
+            if len(word) < minimum_word_length:
+                continue
+            num_words_processed += 1
+            if random.randint(1, num_words_processed) == 1:
+                curr_word = word
+    return curr_word
